@@ -50,6 +50,7 @@ public class SpringDataApplication implements CommandLineRunner{
 //		testUpdate();
 //		testDelete();
 //		testSavePerson();
+//		testSaveAddress();
 //		testDeletePerson();
 //		testFindAndSort();
 //		testFindByIds();
@@ -65,6 +66,30 @@ public class SpringDataApplication implements CommandLineRunner{
 //		testByGreaterAndLessEquals();
 //		testByFirstNameGreaterThan();
 		
+//		testByStartAndEnd();
+//		testContaining();
+//		testByAddressStartAndEnding();
+		
+	}
+
+	private void testByAddressStartAndEnding() {
+		List<Address> a1 = addressRepositoy.findByCityStartingWithOrStreetEndingWith("Rio", "1022");
+		a1.forEach(System.out::println);
+	}
+
+	private void testContaining() {
+		List<Address> a1 = addressRepositoy.findByStreetContaining("Rio");
+		a1.forEach(System.out::println);
+	}
+
+	private void testByStartAndEnd() {
+		List<Address> a1 = addressRepositoy.findByCityStartingWith("Rio");
+		a1.forEach(System.out::println);
+		
+		System.out.println("********************************************");
+		
+		List<Address> a2 = addressRepositoy.findByStreetEndingWith("1022");
+		a2.forEach(System.out::println);
 	}
 
 	private void testByFirstNameGreaterThan() {
@@ -247,6 +272,38 @@ public class SpringDataApplication implements CommandLineRunner{
 		personRepositoy.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6));
 		
 		persons.forEach(System.out::println);
+	}
+	
+	private void testSaveAddress() {
+		Person p1 = personRepositoy.findById(35L).get();
+		Person p2 = personRepositoy.findById(6L).get();
+		
+		Address address = new Address();
+		address.setCity("Rio de Janeiro");
+		address.setPersons(Arrays.asList(p1));
+		address.setStreet("Av Copacabana, 33");
+		address.setType(TypeAddress.RESIDENCIAL);
+		
+		Address address1 = new Address();
+		address1.setCity("Rio de Janeiro");
+		address1.setPersons(Arrays.asList(p1));
+		address1.setStreet("Av Rio Grande, 13");
+		address1.setType(TypeAddress.RESIDENCIAL);
+		
+		Address address2 = new Address();
+		address2.setCity("Diadema");
+		address2.setPersons(Arrays.asList(p2));
+		address2.setStreet("Rua Quito, 82");
+		address2.setType(TypeAddress.RESIDENCIAL);
+		
+		Address address3 = new Address();
+		address3.setCity("São Paulo");
+		address3.setPersons(Arrays.asList(p2));
+		address3.setStreet("Av Domingo de Morais, 1022");
+		address3.setType(TypeAddress.COMERCIAL);
+		
+		addressRepositoy.saveAll(Arrays.asList(address,address1,address2,address3));
+		
 	}
 
 	private void testDelete() {
