@@ -71,7 +71,30 @@ public class SpringDataApplication implements CommandLineRunner{
 //		testByAddressStartAndEnding();
 //		testByInNotIn();
 //		testOrderBy();
-		testIgnoreCase();		
+//		testIgnoreCase();	
+//		testByNotNullAndNull();
+//		testPhonesByNumber();
+//		testFindAgeGreaterThanOrderByFirstNameAndLastName();
+	}
+
+	private void testFindAgeGreaterThanOrderByFirstNameAndLastName() {
+		List<Person> p1 = personRepositoy.findByAgeGreaterThanOrderByFirstNameAscLastNameAsc(10);
+		p1.forEach(System.out::println);
+	}
+
+	private void testPhonesByNumber() {
+		List<Person> p1 = personRepositoy.findByPhonesNumberStartingWith("993224532");
+		p1.forEach(System.out::println);
+	}
+
+	private void testByNotNullAndNull() {
+		List<Person> p1 = personRepositoy.findByDocumentIsNull();
+		p1.forEach(System.out::println);
+		
+		System.out.println("********************************************");
+		
+		List<Person> p2 = personRepositoy.findByDocumentIsNotNull();
+		p2.forEach(System.out::println);
 	}
 
 	private void testIgnoreCase() {

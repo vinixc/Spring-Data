@@ -125,5 +125,31 @@ public interface PersonRepositoy extends JpaRepository<Person, Long>{
 	 * @return
 	 */
 	List<Person> findByFirstNameIgnoreCase(String firstName);
+	
+	/**
+	 * Busca por linhas em person que tenham document_id null
+	 * @return
+	 */
+	List<Person> findByDocumentIsNull();
+	
+	/**
+	 * Busca por linhas em person que não contenham o document_id iguais a null
+	 * @return
+	 */
+	List<Person> findByDocumentIsNotNull();
+	
+	/**
+	 * Busca por number via phones mapeado em person.
+	 * @param number
+	 * @return
+	 */
+	List<Person> findByPhonesNumberStartingWith(String number);
+	
+	/**
+	 * Busca pela idade maior que o parametro, ordenando pelo firstName e LastName de forma ascendente
+	 * @param age
+	 * @return
+	 */
+	List<Person> findByAgeGreaterThanOrderByFirstNameAscLastNameAsc(Integer age);
 
 }
