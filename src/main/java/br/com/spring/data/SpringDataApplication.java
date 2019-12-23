@@ -79,7 +79,26 @@ public class SpringDataApplication implements CommandLineRunner{
 //		findFirstName();
 //		findFirstNameOrAge();
 //		findFirstNameAndAge();
-		findByCPFsEndsWith();
+//		findByCPFsEndsWith();
+		
+//		findPersonByAges();
+//		findPersonByFirstNames();
+//		findDocumentByCPFStart();
+	}
+
+	private void findDocumentByCPFStart() {
+		List<Document> d = documentRepositoy.findByCPFStartWith("223");
+		d.forEach(System.out::println);
+	}
+
+	private void findPersonByFirstNames() {
+		List<Person> p1 = personRepositoy.findByFirstNames("Vinicius", "Yasmin", "Celso");
+		p1.forEach(System.out::println);
+	}
+
+	private void findPersonByAges() {
+		List<Person> p1 = personRepositoy.findByAgeBetweenParams(28, 36);
+		p1.forEach(System.out::println);
 	}
 
 	private void findByCPFsEndsWith() {
