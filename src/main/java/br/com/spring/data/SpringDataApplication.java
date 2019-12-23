@@ -93,8 +93,40 @@ public class SpringDataApplication implements CommandLineRunner{
 //		updatePhones();
 //		updatePhoneType();
 //		deleteByNumber();
+//		findFirstLastName();
+//		findTopAge();
+		findFirst3AndTop3();
 	}
 	
+	private void findFirst3AndTop3() {
+		List<Person> p1 = personRepositoy.findFirst3ByOrderByLastNameAsc();
+		p1.forEach(System.out::println);
+		
+		System.out.println("-----------------------------------------------------");
+		
+		List<Person> p2 = personRepositoy.findTop3ByOrderByAgeAsc();
+		p2.forEach(System.out::println);
+
+		
+	}
+
+	private void findTopAge() {
+		Person p1= personRepositoy.findTopByOrderByAgeAsc();
+		System.out.println(p1.toString());
+		
+		Person p2= personRepositoy.findTopByOrderByAgeDesc();
+		System.out.println(p2.toString());
+	}
+
+	private void findFirstLastName() {
+		Person p1= personRepositoy.findFirstByOrderByLastNameAsc();
+		System.out.println(p1.toString());
+		
+		Person p2= personRepositoy.findFirstByOrderByLastNameDesc();
+		System.out.println(p2.toString());
+		
+	}
+
 	private void deleteByNumber() {
 		int result = phoneRepositoy.deleteByNumber("940872874");
 		System.out.println("result = " + result);

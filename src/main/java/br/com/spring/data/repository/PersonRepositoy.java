@@ -10,6 +10,18 @@ import br.com.spring.data.entity.Person;
 
 public interface PersonRepositoy extends JpaRepository<Person, Long>{
 	
+	List<Person> findTop3ByOrderByAgeAsc();
+	
+	List<Person> findFirst3ByOrderByLastNameAsc();
+	
+	Person findTopByOrderByAgeAsc();
+	
+	Person findTopByOrderByAgeDesc();
+	
+	Person findFirstByOrderByLastNameDesc();
+	
+	Person findFirstByOrderByLastNameAsc();
+	
 	/**
 	 * Busca por age igual ao parametro fornecido.
 	 * 
@@ -171,5 +183,6 @@ public interface PersonRepositoy extends JpaRepository<Person, Long>{
 	
 	@Query("select p from Person p where p.firstName in :names order by p.age asc")
 	List<Person> findByFirstNames(@Param("names") String ... firstsNames);
+
 
 }
