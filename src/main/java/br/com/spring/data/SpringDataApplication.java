@@ -86,7 +86,20 @@ public class SpringDataApplication implements CommandLineRunner{
 //		findDocumentByCPFStart();
 		
 //		findAddressPorCidade();
-		findAddressPorCityAndStreet();
+//		findAddressPorCityAndStreet();
+		
+		testFunctionAddress();
+	}
+
+	private void testFunctionAddress() {
+		String ad1 = addressRepositoy.functionConcatenaEndereco(1);
+		
+		System.out.println(ad1);
+		
+		String ad2 = addressRepositoy.concatenaEnderecoNativo(8);
+		
+		System.out.println(ad2);
+		
 	}
 
 	private void findAddressPorCityAndStreet() {
