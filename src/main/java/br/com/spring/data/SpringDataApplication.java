@@ -18,10 +18,12 @@ import br.com.spring.data.entity.Document;
 import br.com.spring.data.entity.Person;
 import br.com.spring.data.entity.Phone;
 import br.com.spring.data.entity.Phone.TypePhone;
+import br.com.spring.data.entity.User;
 import br.com.spring.data.repository.AddressRepositoy;
 import br.com.spring.data.repository.DocumentRepositoy;
 import br.com.spring.data.repository.PersonRepositoy;
 import br.com.spring.data.repository.PhoneRepositoy;
+import br.com.spring.data.repository.UserRepository;
 
 @SpringBootApplication
 @ImportResource(value = "spring-data.xml")
@@ -38,6 +40,9 @@ public class SpringDataApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PhoneRepositoy phoneRepositoy;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDataApplication.class, args);
@@ -95,9 +100,22 @@ public class SpringDataApplication implements CommandLineRunner{
 //		deleteByNumber();
 //		findFirstLastName();
 //		findTopAge();
-		findFirst3AndTop3();
+//		findFirst3AndTop3();
+		
+		testUser();
 	}
 	
+	private void testUser() {
+		User user = new User();
+		user.setUsername("vinixc");
+		user.setPassword("vinixc");
+		
+		userRepository.save(user);
+		User u = userRepository.findById((Long) user.getId()).get();
+		System.out.println(u.toString());
+		
+	}
+
 	private void findFirst3AndTop3() {
 		List<Person> p1 = personRepositoy.findFirst3ByOrderByLastNameAsc();
 		p1.forEach(System.out::println);
