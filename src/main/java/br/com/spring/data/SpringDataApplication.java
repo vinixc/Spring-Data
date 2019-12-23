@@ -84,6 +84,24 @@ public class SpringDataApplication implements CommandLineRunner{
 //		findPersonByAges();
 //		findPersonByFirstNames();
 //		findDocumentByCPFStart();
+		
+//		findAddressPorCidade();
+		findAddressPorCityAndStreet();
+	}
+
+	private void findAddressPorCityAndStreet() {
+		Address ad1 = addressRepositoy.buscaPorEndereco("Diadema", "Rua Quito, 82");
+		System.out.println(ad1.toString());
+		
+		Address ad2 = addressRepositoy.buscaPorCidadeRua("Diadema", "Rua Quito, 82");
+		System.out.println(ad2.toString());
+		
+	}
+
+	private void findAddressPorCidade() {
+		List<Address> a = addressRepositoy.buscaPorCidade("Diadema");
+		a.forEach(System.out::println);
+
 	}
 
 	private void findDocumentByCPFStart() {

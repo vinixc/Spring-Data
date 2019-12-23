@@ -2,7 +2,10 @@ package br.com.spring.data.repository;
 
 import java.util.List;
 
+import javax.print.attribute.standard.MediaSize.NA;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import br.com.spring.data.entity.Address;
 
@@ -43,5 +46,23 @@ public interface AddressRepositoy extends JpaRepository<Address, Long>{
 	 * @return
 	 */
 	List<Address> findByCityOrderByTypeDesc(String city);
+	
+	/**
+	 * Usando @NamedQuery na entidade.
+	 * @param cidade
+	 * @return
+	 */
+	List<Address> buscaPorCidade(String cidade);
+	
+	/**
+	 * Usando @NamedNativeQuery na entidade.
+	 * @param cidade
+	 * @return
+	 */
+	Address buscaPorEndereco(String city, String street);
+	
+	@Query(	value = "select * from Addresses where city like ?1 and street like ?2",
+			nativeQuery = true)
+	Address buscaPorCidadeRua(String city, String street);
 
 }
