@@ -90,8 +90,28 @@ public class SpringDataApplication implements CommandLineRunner{
 		
 //		testFunctionAddress();
 //		testProcedureCPF();
+//		updatePhones();
+//		updatePhoneType();
+//		deleteByNumber();
 	}
 	
+	private void deleteByNumber() {
+		int result = phoneRepositoy.deleteByNumber("940872874");
+		System.out.println("result = " + result);
+	}
+
+	private void updatePhoneType() {
+		int result = phoneRepositoy.setPhoneType(TypePhone.COMERCIAL, 5l);
+		System.out.println("result = " + result);
+
+	}
+
+	private void updatePhones() {
+		int result = phoneRepositoy.setPhoneNumber("940872874", 4l);
+		System.out.println("result = " + result);
+		
+	}
+
 	private void testProcedureCPF() {
 		String cpf = documentRepositoy.replaceCPF(4);
 		System.out.println(cpf);
