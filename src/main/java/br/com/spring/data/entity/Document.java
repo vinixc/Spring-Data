@@ -8,12 +8,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "DOCUMENTS",
 	indexes = {@Index(columnList = "CPF, RG", name = "IDX_CPF_RG", unique = true)}
+		)
+@NamedStoredProcedureQuery(
+			name = "Document.procedureReplaceCPF",
+			procedureName = "procReplaceCPF",
+			parameters = {
+					@StoredProcedureParameter(
+							mode = ParameterMode.IN, name = "ID_IN", type = Integer.class
+				),
+					@StoredProcedureParameter(
+							mode = ParameterMode.OUT, name = "CPF_OUT", type = String.class
+				)
+			}
 		)
 public class Document implements Serializable{
 	

@@ -2,8 +2,6 @@ package br.com.spring.data.repository;
 
 import java.util.List;
 
-import javax.print.attribute.standard.MediaSize.NA;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

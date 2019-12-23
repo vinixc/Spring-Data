@@ -88,7 +88,17 @@ public class SpringDataApplication implements CommandLineRunner{
 //		findAddressPorCidade();
 //		findAddressPorCityAndStreet();
 		
-		testFunctionAddress();
+//		testFunctionAddress();
+//		testProcedureCPF();
+	}
+	
+	private void testProcedureCPF() {
+		String cpf = documentRepositoy.replaceCPF(4);
+		System.out.println(cpf);
+		
+		String cpf2 = documentRepositoy.procedureReplaceCPF(4);
+		System.out.println(cpf2);
+		
 	}
 
 	private void testFunctionAddress() {
