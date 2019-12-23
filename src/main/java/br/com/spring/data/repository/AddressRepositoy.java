@@ -36,5 +36,12 @@ public interface AddressRepositoy extends JpaRepository<Address, Long>{
 	 * @return
 	 */
 	List<Address> findByCityStartingWithOrStreetEndingWith(String city,String street);
+	
+	/**
+	 * Busca por city e ordena por type de forma descendente.
+	 * @param city
+	 * @return
+	 */
+	List<Address> findByCityOrderByTypeDesc(String city);
 
 }

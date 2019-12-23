@@ -69,6 +69,29 @@ public class SpringDataApplication implements CommandLineRunner{
 //		testByStartAndEnd();
 //		testContaining();
 //		testByAddressStartAndEnding();
+//		testByInNotIn();
+//		testOrderBy();
+		testIgnoreCase();		
+	}
+
+	private void testIgnoreCase() {
+		List<Person> p1 = personRepositoy.findByFirstNameIgnoreCase("VINICIUS");
+		p1.forEach(System.out::println);
+	}
+
+	private void testOrderBy() {
+		List<Address> a1 = addressRepositoy.findByCityOrderByTypeDesc("Rio de Janeiro");
+		a1.forEach(System.out::println);
+	}
+
+	private void testByInNotIn() {
+		List<Person> p1 = personRepositoy.findByAgeIn(24,28,36,45);
+		p1.forEach(System.out::println);
+		
+		System.out.println("********************************************");
+		
+		List<Person> p2 = personRepositoy.findByAgeNotIn(24,28,36,45);
+		p2.forEach(System.out::println);
 		
 	}
 
@@ -80,6 +103,7 @@ public class SpringDataApplication implements CommandLineRunner{
 	private void testContaining() {
 		List<Address> a1 = addressRepositoy.findByStreetContaining("Rio");
 		a1.forEach(System.out::println);
+		
 	}
 
 	private void testByStartAndEnd() {
